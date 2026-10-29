@@ -1,0 +1,386 @@
+@font-face {
+    font-family: 'GenMid';
+    src: url('../media/font/GenInterfaceJP-Medium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'GenBold';
+    src: url('../media/font/GenInterfaceJP-Bold.woff') format('woff');
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    margin: 0;
+    padding: 24px;
+    place-items: center;
+    background-color: #efefef;
+    color: #333;
+    font-family: "GenMid", sans-serif;
+}
+
+#background-wave {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.app {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 1100px);
+}
+
+.app [hidden] {
+    display: none;
+}
+
+.login-panel {
+    display: flex;
+    width: min(100%, 500px);
+    margin-inline: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 40px 32px;
+}
+
+.logo {
+    display: block;
+    width: min(100%, 460px);
+    height: auto;
+}
+
+.login-form {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.login-form label {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.login-form input,
+.login-form button {
+    width: 100%;
+    min-height: 50px;
+    border: 1px solid #d5d5d5;
+    border-radius: 10000px;
+    font: inherit;
+}
+
+.login-form input {
+    min-width: 0;
+    flex: 1;
+    padding: 0 16px;
+    background-color: #fff;
+}
+
+.login-form input:focus {
+    border-color: #ff7f00;
+    outline: 2px solid #ff7f00;
+    outline-offset: 2px;
+}
+
+.login-form button {
+    width: 88px;
+    flex: 0 0 88px;
+    border-color: #ff7f00;
+    background-color: #ff7f00;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background-color: #e97200;
+    border-color: #e97200;
+}
+
+.login-form button:focus-visible {
+    outline: 2px solid #ff7f00;
+    outline-offset: 3px;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+}
+
+.database-status,
+.answer-status {
+    min-height: 1.5em;
+    margin: 0;
+    color: #555;
+    text-align: center;
+}
+
+.waiting-screen {
+    display: flex;
+    width: min(100%, 500px);
+    margin-inline: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 40px 32px;
+}
+
+.waiting-logo {
+    display: block;
+    width: min(100%, 300px);
+    height: auto;
+}
+
+.waiting-screen h1,
+.waiting-screen p {
+    margin: 0;
+}
+
+.waiting-screen h1 {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+}
+
+.waiting-screen>p:not(.database-status) {
+    line-height: 1.7;
+}
+
+.game-screen {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.game-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    z-index: 100;
+    text-align: center;
+    justify-content: center;
+    /* 水平方向の中央寄せ */
+    align-items: center;
+    /* 垂直方向の中央寄せ */
+    background-color: #f4f4f4;
+    display: flex;
+}
+
+.timer-wrap {
+    --timer-progress: 70;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 52px;
+}
+
+.timer-ring {
+    display: block;
+    width: 52px;
+    height: 52px;
+    transform: rotate(-90deg);
+}
+
+.timer-ring circle {
+    fill: none;
+    stroke-width: 7;
+}
+
+.timer-ring-bg {
+    stroke: #e5e5e5;
+}
+
+.timer-ring-progress {
+    stroke: #ff7f00;
+    stroke-linecap: round;
+    stroke-dasharray: 289.0265;
+    stroke-dashoffset: calc(289.0265 * (1 - var(--timer-progress) / 100));
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+.timer {
+    font-family: "din-condensed", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 35px;
+    line-height: 1;
+    margin: 0;
+}
+
+.player-name,
+.question-count {
+    margin: 0;
+    font-weight: 700;
+}
+
+.question-count {
+    color: #e97200;
+    font-size: 1.1rem;
+}
+
+.question-view {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 2vw, 24px);
+}
+
+.question-image {
+    display: block;
+    width: min(100%, 900px);
+    max-height: 65vh;
+    flex: 1;
+    border-radius: 20px;
+    object-fit: contain;
+    cursor: zoom-in;
+}
+
+.question-image:focus-visible {
+    outline: 3px solid #ff7f00;
+    outline-offset: 4px;
+}
+
+.image-dialog {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    max-width: none;
+    height: 100vh;
+    max-height: none;
+    margin: 0;
+    padding: 24px;
+    place-items: center;
+    border: 0;
+    background: transparent;
+}
+
+.image-dialog[open] {
+    display: grid;
+}
+
+.image-dialog::backdrop {
+    background-color: rgb(0 0 0 / 85%);
+}
+
+.expanded-question-image {
+    display: block;
+    width: min(100%, 1600px);
+    max-height: calc(100vh - 48px);
+    object-fit: contain;
+    cursor: zoom-out;
+}
+
+.question-arrow {
+    display: grid;
+    width: 52px;
+    height: 52px;
+    flex: 0 0 52px;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background-color: #ff7f00;
+    color: #fff;
+    cursor: pointer;
+}
+
+.question-arrow svg {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2.5;
+}
+
+.question-arrow:disabled {
+    background-color: #c9c9c9;
+    cursor: not-allowed;
+}
+
+.question-arrow:focus-visible,
+.answer-form input:focus-visible,
+.answer-form button:focus-visible {
+    outline: 2px solid #ff7f00;
+    outline-offset: 3px;
+}
+
+.answer-form {
+    display: flex;
+    width: min(100%, 620px);
+    gap: 10px;
+}
+
+.answer-form input,
+.answer-form button {
+    min-height: 50px;
+    border: 1px solid #d5d5d5;
+    border-radius: 10000px;
+    font: inherit;
+}
+
+.answer-form input {
+    min-width: 0;
+    flex: 1;
+    padding: 0 16px;
+    background-color: #fff;
+}
+
+.answer-form button {
+    flex: 0 0 auto;
+    padding: 0 22px;
+    border-color: #ff7f00;
+    background-color: #ff7f00;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.answer-form button:disabled {
+    opacity: 0.65;
+    cursor: wait;
+}
+
+@media (max-width: 520px) {
+    body {
+        padding: 16px;
+    }
+
+    .login-panel {
+        padding: 24px 12px;
+    }
+
+    .question-arrow {
+        width: 40px;
+        height: 40px;
+        flex-basis: 40px;
+    }
+
+    .answer-form {
+        flex-direction: column;
+    }
+}

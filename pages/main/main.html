@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quote</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://use.typekit.net/yma6akl.css">
+</head>
+
+<body>
+    <canvas id="background-wave" aria-hidden="true"></canvas>
+    <main class="app">
+        <section id="login-screen" class="login-panel">
+            <img class="logo" src="../media/imgs/logo.png" alt="quote ロゴ">
+            <form id="login-form" class="login-form">
+                <label class="visually-hidden" for="username">ユーザー名</label>
+                <input id="username" name="username" type="text" placeholder="ユーザー名を入力" autocomplete="username"
+                    maxlength="60" required>
+                <button type="submit">参加</button>
+            </form>
+        </section>
+
+        <section id="waiting-screen" class="waiting-screen" hidden>
+            <img class="logo" src="../imgs/logo.png" alt="quote ロゴ">
+            <h1>開始までお待ちください</h1>
+            <p class="playerName">プレイヤーネーム </p>
+
+        </section>
+
+        <section id="game-screen" class="game-screen" hidden>
+            <header class="game-header">
+                <p class="playerName">プレイヤーネーム </p>
+                <div class="timer-wrap" aria-label="残り時間">
+                    <svg class="timer-ring" viewBox="0 0 120 120" aria-hidden="true">
+                        <circle class="timer-ring-bg" cx="60" cy="60" r="30"></circle>
+                        <circle class="timer-ring-progress" cx="60" cy="60" r="30"></circle>
+                    </svg>
+                    <p class="timer" aria-live="polite">60:00</p>
+                </div>
+            </header>
+            <div class="question-view">
+                <button id="previous-question" class="question-arrow" type="button" aria-label="前の問題" disabled>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m15 18-6-6 6-6" />
+                    </svg>
+                </button>
+                <img id="question-image" class="question-image" src="../../問題画像吐き出し/QUOTE-05_Q1.png" alt="問題1">
+                <button id="next-question" class="question-arrow" type="button" aria-label="次の問題">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m9 18 6-6-6-6" />
+                    </svg>
+                </button>
+            </div>
+            <form id="answer-form" class="answer-form">
+                <label class="visually-hidden" for="answer">回答</label>
+                <input id="answer" name="answer" type="text" placeholder="回答を入力" maxlength="500" required>
+                <button id="answer-submit" type="submit">送信</button>
+            </form>
+            <p id="answer-status" class="answer-status" role="status" aria-live="polite"></p>
+        </section>
+    </main>
+    <dialog id="question-image-dialog" class="image-dialog" aria-label="拡大された問題画像">
+        <img id="expanded-question-image" class="expanded-question-image" alt="">
+    </dialog>
+    <script src="background.js" defer></script>
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
