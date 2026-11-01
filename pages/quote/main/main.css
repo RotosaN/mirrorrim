@@ -45,6 +45,99 @@ body {
     display: none;
 }
 
+.correct-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: grid;
+    place-items: center;
+    background-color: rgb(0 0 0 / 72%);
+    cursor: pointer;
+}
+
+.pause-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    display: grid;
+    place-items: center;
+    background-color: rgb(0 0 0 / 72%);
+    color: #fff;
+    pointer-events: auto;
+}
+
+.pause-overlay[hidden] {
+    display: none;
+}
+
+.pause-message {
+    display: grid;
+    justify-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.pause-message .material-symbols-outlined {
+    font-size: clamp(4rem, 12vw, 7rem);
+}
+
+.pause-message p {
+    margin: 0;
+}
+
+.pause-message p:first-of-type {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 700;
+}
+
+.pause-message p:last-of-type {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+}
+
+.correct-overlay[hidden] {
+    display: none;
+}
+
+.correct-overlay img {
+    width: min(72vw, 520px);
+    height: auto;
+    animation: correct-answer 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+.correct-overlay.is-closing {
+    animation: correct-overlay-fade 0.22s ease-out forwards;
+}
+
+.correct-overlay.is-closing img {
+    animation: correct-image-fade 0.22s ease-out forwards;
+}
+
+@keyframes correct-answer {
+    0% {
+        opacity: 0;
+        transform: scale(1.5) rotate(10deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes correct-overlay-fade {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes correct-image-fade {
+    to {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
 .login-panel {
     display: flex;
     width: min(100%, 500px);
