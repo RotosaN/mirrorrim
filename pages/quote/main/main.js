@@ -67,7 +67,7 @@ function renderScreen() {
 }
 
 function renderQuestion() {
-    questionImage.src = `../../問題画像吐き出し/QUOTE-05_Q${currentQuestion}.png`;
+    questionImage.src = `../media/imgs/question/jp_q${currentQuestion}.png`;
     questionImage.alt = `問題${currentQuestion}`;
     questionImage.setAttribute("aria-label", `問題${currentQuestion}をクリックして拡大`);
     questionImage.setAttribute("role", "button");
